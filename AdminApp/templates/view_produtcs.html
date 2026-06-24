@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'dashboard.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix mb-20">
+        <div class="pull-left">
+            <h4 class="text-blue h4">Product Details</h4>
+        </div>
+
+    </div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th>Option</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for d in data%}
+        <tr>
+            <td>{{d.id}}</td>
+            <td>{{d.Category_Name}}</td>
+            <td>{{d.product_name}}</td>
+            <td>{{d.price}}</td>
+            <td>{{d.Description}}</td>
+            <td><img src="{{d.product_image.url}}" width="200px" height="100px"></td>
+            <td>
+                <a href="{% url 'edit_product' pro_id=d.id %}" class="btn btn-outline-success"> Edit</a>
+                <a href="{% url 'delete_category' c_id=d.id %}" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+
+        {% endfor %}
+
+
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
+{% endblock %}

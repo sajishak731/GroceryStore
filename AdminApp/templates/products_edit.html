@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'dashboard.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Add product Here </h4>
+            <form class="forms-sample" method="post" action="{% url 'update_product' p_id=pro.id %}" enctype="multipart/form-data">
+                   {% csrf_token %}
+                  <div class="form-group">
+                    <label for="exampleSelectGender">Category name</label>
+                    <select class="form-control" id="exampleSelectGender" name="category_name">
+                        <option>{{pro.category_name}}</option>
+                        {% for i in categories %}
+                        <option>{{i.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1"> Product Name</label>
+                    <input type="text" class="form-control" id="exampleInputName1"  value="{{pro.product_name}}" placeholder="Name" name="product_name">
+                </div>
+
+                 <div class="form-group">
+                    <label for="exampleTextarea1">Description</label>
+                    <textarea class="form-control" id="exampleTextarea1" name="description" rows="4">{{pro.description}}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword4">Price</label>
+                    <input type="text" class="form-control" id="exampleInputPassword4" name="price" value="{{pro.price}}"  placeholder="Price">
+                </div>
+                <div class="form-group ">
+                                  <img src="{{pro.product_image.url}}" width="100px" height="100px" class="mb-3">
+
+                    <label>Product Image</label>
+                    <input type="file" class="form-control" id="exampleInputUsername3" name="product_image" placeholder="product image">
+
+
+                </div>
+
+
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                <button class="btn btn-dark">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+{% endblock %}

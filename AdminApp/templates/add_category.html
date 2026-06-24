@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'dashboard.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Add category</title>
+</head>
+<body>
+<div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Add employee Here  </h4>
+                    <form class="forms-sample" method="post" action="#" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                      <div class="form-group">
+                        <label for="exampleInputUsername1">Name</label>
+                        <input type="text" class="form-control" id="exampleInputUsername1" name ="name" placeholder="Name">
+                      </div>
+                          <div class="form-group">
+                        <label for="exampleInputUsername1">Age</label>
+                        <input type="text" class="form-control" id="exampleInputUsername4"  name="age" placeholder="Age">
+                      </div>
+                          <div class="form-group">
+                        <label for="exampleInputUsername1">place</label>
+                        <input type="text" class="form-control" id="exampleInputUsername3" name="place" placeholder="Place">
+                      </div>
+                          <div class="form-group">
+                        <label for="exampleInputUsername1">Phone</label>
+                        <input type="text" class="form-control" id="exampleInputUsername2" name="phone" placeholder="Phone">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" name="email" placeholder="Email">
+                      </div>
+                       <div class="form-group">
+                        <label for="exampleInputEmail1">Profile Image address</label>
+                        <input type="file" class="form-control" id="exampleInputEmail4" name="img" placeholder="file">
+                      </div>
+
+
+                      <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                      <button class="btn btn-light" type="submit">Cancel</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+</body>
+</html>
+{% endblock %}

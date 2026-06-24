@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'dashboard.html' %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Add product Here </h4>
+            <form class="forms-sample" method="post" action="#" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="exampleInputUsername"> Category Name</label>
+                    <select class="form-control" id="exampleselectgender" name="Category">
+                        <option>Select Category</option>
+                        {% for i in data %}
+                            <option>{{i.category_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername9">Product Name</label>
+                    <input type="text" class="form-control" id="exampleInputUsername4" name="productname" placeholder="Product Name">
+                </div>
+                <div class="form-floating mb-3">
+                    <label for="floatingTextarea">Description</label>
+                    <textarea class="form-control" placeholder="Description" id="floatingTextarea" style="height: 150px;" name="description" ></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Price </label>
+                    <input type="text" class="form-control" id="exampleInputUsername6" name="Price" placeholder="Price">
+
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Product Image</label>
+                        <input type="file" class="form-control" id="exampleInputUsername3" name="product_image" placeholder="product image">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light" type="submit">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+{% endblock %}
