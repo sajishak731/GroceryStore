@@ -104,7 +104,7 @@
                     <div class="modal-body d-flex align-items-center">
                         <div class="input-group w-75 mx-auto d-flex">
                             <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                            <span id="search-icon-11" class="input-group-text p-3"><i class="fa fa-search"></i></span>
                         </div>
                     </div>
                 </div>
@@ -115,11 +115,11 @@
 
         <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
-            <h1 class="text-center text-white display-6">Shop Detail</h1>
+            <h1 class="text-center text-white display-6">Product Details</h1>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                <li class="breadcrumb-item active text-white">Shop Detail</li>
+                <li class="breadcrumb-item active text-white">Products Details</li>
             </ol>
         </div>
         <!-- Single Page Header End -->
@@ -155,9 +155,9 @@
                                 </div>
                                 <form>
                                     <div>
-                                        <input type="number" class="w-100 form-control border-0 py-3 mb-4" placeholder="Select Quantity" min="1">
-                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Price" value="{{products.price}}">
-                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Total Price">
+                                        <input type="number" class="w-100 form-control border-0 py-3 mb-4" placeholder="Select Quantity" min="0" id="quantity">
+                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Price" value="{{products.price}}" id="price">
+                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Total Price" id="total">
                                         <button class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill" type="submit">Add to cart</button>
                                     </div>
 
@@ -571,6 +571,20 @@
 
     <!-- Template Javascript -->
     <script src="{% static 'web/js/main.js' %}"></script>
+
+     <script>
+        $(document).ready(function(){
+            $("#quantity").change(function(){
+            x=document.getElementById("quantity").value;
+            y=document.getElementById("price").value;
+            result =x*y;
+            document.getElementById("total").value=result;
+            })
+        })
+    </script>
+
+
+
     </body>
 
 </html>
