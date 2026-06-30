@@ -16,4 +16,7 @@ urlpatterns = [
     path('user_sign_in/',views.user_sign_in,name="user_sign_in"),
     path('privacy_policy/', views.privacy_policy, name="privacy_policy"),
 
+    path('save_cart/',views.save_cart,name="save_cart"),
+    path('cartpage_products/',views.cartpage_products,name="cartpage_products"),
+
 ]

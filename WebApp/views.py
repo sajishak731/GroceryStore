@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.template.context_processors import request
 
 from AdminApp.models import CategoryDb,ProductDb
-from WebApp.models import ContactDb,RegistrationDb
+from WebApp.models import ContactDb,RegistrationDb,CartDb
 
 # Create your views here.
 
@@ -57,8 +57,7 @@ def single_item(req,pro_id):
     return render(req,'single_item.html',context)
 
 
-def cartpage(req):
-    return render(req,'cartpages.html')
+
 def checkoutpage(req):
     return render(req,'checkout.html')
 
@@ -121,8 +120,35 @@ def privacy_policy(req):
     return render(req,'privacy_policy.html')
 
 
+def cartpage(req):
+    return render(req,'cartpages.html')
 
 
+def save_cart(request):
+    if request.method == "POST":
+        name =request.POST.get('uname')
+        product_name=request.POST.get('product_name')
+        quantity=request.POST.get('quantity')
+        price=request.POST.get('price')
+        totalprice=request.POST.get('total')
+        product=ProductDb.objects.filter(product_name=product_name).first()
+        img=product.product_image if product else None
+        obj =CartDb(Product_Name=product_name,Quantity=quantity,Price=price,Total_Price=totalprice,UserName=name,Product_Img=img)
+        obj.save()
+        return redirect(cartpage)
+
+
+#
+# def cartpage_products(req):
+#     carts = CartDb.objects.all()
+#     return render(req,{'carts':carts})
+
+
+
+def cartpage_products(request):
+    data = CartDb.objects.all()
+    print(data)
+    return render(request,'cartpages.html',{'data':data})
 
 
 

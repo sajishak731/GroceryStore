@@ -6,6 +6,8 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.storage import FileSystemStorage
 from WebApp.models import ContactDb
 
+from django.contrib import messages
+
 # Create your views here.
 
 def loginpage(request):
@@ -25,6 +27,7 @@ def insert_category(request):
         category_image = request.FILES.get('Image')
         obj = CategoryDb(category_image=category_image,description=description,category_name=category_name)
         obj.save()
+        messages.success(request, "Category added successfully!")
         return redirect(add_category)
 
 def admin_login(request):
@@ -38,16 +41,23 @@ def admin_login(request):
                 request.session["username"] =uname
                 request.session["password"] =pswd
                 print("Login succesfully...!")
+                messages.success(request, "Welcome to Grocerystore Dashboard....!")
+
                 return redirect(dashboard)
             else:
                 print("please enter correct username and password ")
+                messages.warning(request, "Incorrect Username and Password....!")
+
                 return redirect(dashboard)
         else:
             print("username not found")
+            messages.error(request, "Incorrect Username....!")
+
             return redirect(dashboard)
 def admin_logout(request):
     del request.session["username"]
     del request.session["password"]
+    messages.warning(request, "Logout succesfully....!")
     return redirect(loginpage)
 
 
@@ -69,11 +79,13 @@ def update_category(request,c_id):
     except MultiValueDictKeyError:
         file = CategoryDb.objects.get(id=c_id).category_image
     CategoryDb.objects.filter(id=c_id).update(category_name=category_name,description=description,category_image=file)
+    messages.success(request, "Category Updates successfully!")
     return redirect(view_category)
 
 def delete_category(request,c_id):
     data = CategoryDb.objects.filter(id =c_id)
     data.delete()
+    messages.success(request, "Category Deleted successfully!")
     return redirect(view_category)
 # ------------------------------------------------------------------------------------------------------------------------------------------
 def new_product(request):
@@ -104,6 +116,7 @@ def insert_product(request):
         price=request.POST.get('price')
         obj = ProductDb(product_image=product_image,product_name=product_name,description=description,category_name=category_name,price=price)
         obj.save()
+        messages.success(request, "Product added successfully...!")
         return redirect(new_product)
 def update_product(request,p_id):
     category_name = request.POST.get('category_name')
@@ -118,12 +131,14 @@ def update_product(request,p_id):
         file = ProductDb.objects.get(id=p_id).product_image
     ProductDb.objects.filter(id=p_id).update(category_name=category_name,product_name=product_name,description=description,
                                                  price=price,product_image=file)
+    messages.success(request, "Product Updated Successfully...!")
     return redirect(display_product)
 
 
 def delete_product(request,p_id):
     data = ProductDb.objects.filter(id =p_id)
     data.delete()
+    messages.success(request, "Product Deleted successfully!")
     return redirect(display_product)
 
 def user_deatils(request):

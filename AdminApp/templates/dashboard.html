@@ -256,5 +256,31 @@
 <script src="{% static 'dashboard/src/plugins/datatables/js/dataTables.responsive.min.js' %}"></script>
 <script src="{% static 'dashboard/src/plugins/datatables/js/responsive.bootstrap4.min.js' %}"></script>
 <script src="{% static 'dashboard/vendors/scripts/dashboard.js' %}"></script>
+
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+        {% if i.tags == 'success' %}
+            <script>
+                swal('{{ i }}', '', 'success');
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{ i }}', '', 'error');
+            </script>
+        {% elif i.tags == 'warning' %}
+            <script>
+                swal('{{ i }}', '', 'warning');
+            </script>
+        {% else %}
+            <script>
+                swal('{{ i }}', '', 'info');
+            </script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
 </body>
 </html>

@@ -153,15 +153,26 @@
 <!--                                    <input type="text" class="form-control form-control-sm text-center border-0" value="1">-->
 
                                 </div>
-                                <form>
+                                {% if request.session.name %}
+
+                                <form class="forms-sample" method="post" action="{% url 'save_cart' %}" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+
                                     <div>
-                                        <input type="number" class="w-100 form-control border-0 py-3 mb-4" placeholder="Select Quantity" min="0" id="quantity">
-                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Price" value="{{products.price}}" id="price">
-                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Total Price" id="total">
+                                        <input type="number" class="w-100 form-control border-0 py-3 mb-4" placeholder="Select Quantity" min="0" id="quantity" name="quantity">
+                                        <input type="hidden" class="w-100 form-control border-0 py-3 mb-4"  name="product_name" value="{{products.product_name}}">
+
+                                        <input type="hidden" class="w-100 form-control border-0 py-3 mb-4" placeholder="Price" value="{{products.price}}" id="price" name="price">
+                                        <input type="text" class="w-100 form-control border-0 py-3 mb-4" placeholder="Total Price" id="total" name="total">
+                                        <input type="hidden" class="w-100 form-control border-0 py-3 mb-4"  id="" value="{{request.session.name}}" name="uname">
                                         <button class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill" type="submit">Add to cart</button>
                                     </div>
 
                                 </form>
+                                {% else %}
+                                <a href="{% url 'user_registration' %}" class="btn btn-primary border-0 border-secondary py-3 px-4 position-absolute rounded-pill" type="submit">please login</a>
+                                {% endif %}
+
                             </div>
                             <div class="col-lg-12">
                                 <nav>
