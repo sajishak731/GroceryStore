@@ -87,11 +87,11 @@
                             data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
                     {% if request.session.name %}
 
-                    <a href="{% url 'cartpage' %}" class="position-relative me-4 my-auto">
+                    <a href="{% url 'cartpage_products' %}" class="position-relative me-4 my-auto">
                         <i class="fa fa-shopping-bag fa-2x">
 
                     </i> <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
+                            style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{cart_total}}</span>
                     </a>
                     <div class="dropdown my-auto">
                         <a href="#" class="dropdown-toggle text-primary text-decoration-none" data-bs-toggle="dropdown">
@@ -99,7 +99,7 @@
 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{% url 'user_registration' %}">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user_logout' %}">Logout</a></li>
                         </ul>
                     </div>
 
@@ -164,11 +164,7 @@
                             <a href="#" class="btn px-4 py-2 text-white rounded">{{d.category_name}}</a>
                         </div>
                         {% endfor %}
-                        <!--                        <div class="carousel-item rounded">-->
-                        <!--                            <img src="{% static 'web/img/hero-img-2.jpg' %}" class="img-fluid w-100 h-100 rounded"-->
-                        <!--                                 alt="Second slide">-->
-                        <!--                            <a href="#" class="btn px-4 py-2 text-white rounded">Vegetables</a>-->
-                        <!--                        </div>-->
+
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
                             data-bs-slide="prev">
@@ -286,7 +282,7 @@
                                         </div>
                                         <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                                             <h4>{{i.product_name}}</h4>
-                                            <p>{{i.description}}</p>
+<!--                                            <p>{{i.description}}</p>-->
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">RS {{i.price}} / kg</p>
                                                 <a href="{% url 'single_item' pro_id=i.id %}"

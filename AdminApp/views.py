@@ -42,7 +42,6 @@ def admin_login(request):
                 request.session["password"] =pswd
                 print("Login succesfully...!")
                 messages.success(request, "Welcome to Grocerystore Dashboard....!")
-
                 return redirect(dashboard)
             else:
                 print("please enter correct username and password ")
@@ -147,4 +146,3 @@ def user_deatils(request):
 
 
 
-# def update_product(request,p_id):
